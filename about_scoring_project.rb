@@ -31,6 +31,76 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+  cur_dice = 0
+  number_of_dice = dice.count
+  score = 0
+
+  one_count = 0
+  two_count = 0
+  three_count = 0
+  four_count = 0
+  five_count = 0
+  six_count = 0
+
+  if number_of_dice == 0
+    score = 0
+    return score
+  end
+
+  while cur_dice < number_of_dice do
+    if dice[cur_dice] == 1
+      one_count += 1
+    end
+    if dice[cur_dice] == 2
+      two_count += 1
+    end
+    if dice[cur_dice] == 3
+      three_count += 1
+    end
+    if dice[cur_dice] == 4
+      four_count += 1
+    end
+    if dice[cur_dice] == 5
+      five_count += 1
+    end
+    if dice[cur_dice] == 6
+      six_count += 1
+    end
+
+    cur_dice += 1
+  end
+
+  if one_count >= 3
+    score += 1000
+    score += (one_count - 3) * 100
+  else
+    score += one_count * 100
+  end
+
+  if two_count >= 3
+    score += 200
+  end
+
+  if three_count >= 3
+    score += 300
+  end
+
+  if four_count >= 3
+    score += 400
+  end
+
+  if five_count >= 3
+    score += 500
+    score += (five_count - 3) * 50
+  else
+    score += five_count * 50
+  end
+
+  if six_count >= 3
+    score += 600
+  end
+
+  return score
 end
 
 class AboutScoringProject < Neo::Koan
